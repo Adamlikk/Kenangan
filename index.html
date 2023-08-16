@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Kenangan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Lilita+One&family=Permanent+Marker&display=swap');
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #93999d;
+    background-image: url('default-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-image 0.5s ease-in-out;
+  
+  }
+  header {
+    background-color: #35424a;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  p{
+    font-family: 'Lilita One', cursive;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr); /* Dua kolom */
+  }
+  .image {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .slideshow {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow: hidden;
+  }
+  .slideshow img {
+    width: auto;
+    height: auto;
+    margin: 10% auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+  }
+
+  .comingsoon{
+    text-align: center;
+  }
+
+  .cat-button {
+    width: 100px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+  }
+  .cat-button img {
+    max-width: 50%;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+  }
+
+  .cute-decor {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.3;
+  }
+  .heart-decor {
+    width: 30px;
+  }
+  .star-decor {
+    width: 20px;
+  }
+  .cloud-decor {
+    width: 40px;
+  }
+</style>
+<script>
+  function openSlideshow(imageSrc) {
+    const slideshow = document.querySelector('.slideshow');
+    const imgTag = document.createElement('img');
+    imgTag.src = imageSrc;
+    slideshow.innerHTML = '';
+    slideshow.appendChild(imgTag);
+    slideshow.style.display = 'block';
+  }
+
+  function closeSlideshow() {
+    const slideshow = document.querySelector('.slideshow');
+    slideshow.style.display = 'none';
+  }
+</script>
+</head>
+<body>
+  <header>
+    <h1>Galeri Kenangan</h1>
+    <p>Kenangan Indah Bersama Kamu</p>
+  </header>
+  <div class="container">
+    <div class="image" onclick="openSlideshow('kiran1.jpg')">
+      <img src="kiran1.jpg" alt="Gambar 1">
+      <b><p>Gambar pertama yang aku dapat dari sw kamu wkwk</p></b>
+    </div>
+    <div class="image" onclick="openSlideshow('kiran2.jpg')">
+      <img src="kiran2.jpg" alt="Gambar 2">
+    </div>
+    <div class="image" onclick="openSlideshow('kiran3.jpg')">
+      <img src="kiran3.jpg" alt="Gambar 3">
+    </div>
+    <div class="image" onclick="openSlideshow('kiran4.jpg')">
+      <img src="kiran4.jpg" alt="Gambar 4">
+    </div>
+    <div class="image" onclick="openSlideshow('kiran5.jpg')">
+      <img src="kiran5.jpg" alt="Gambar 3">
+    </div>
+    <div class="image" onclick="openSlideshow('kiran6.jpg')">
+      <img src="kiran6.jpg" alt="Gambar 3">
+      <b><p>LUCUUUUUU</p></b>
+    </div>
+    <div class="image" onclick="openSlideshow('kiran7.jpg')">
+      <img src="kiran7.jpg" alt="Gambar 3">
+    </div>
+    <div class="image" onclick="openSlideshow('kiran8.jpg')">
+      <img src="kiran8.jpg" alt="Gambar 3">
+    </div>
+    <div class="image" onclick="openSlideshow('kiran9.jpg')">
+      <img src="kiran9.jpg" alt="Gambar 3">
+      <p>Kiran lucuuuuuu banget</p>
+    </div>
+    <div class="image" onclick="openSlideshow('kiran10.jpg')">
+      <img src="kiran10.jpg" alt="Gambar 3">
+    </div>
+    <!-- Tambahkan lebih banyak div .image sesuai kebutuhan -->
+  </div>
+  <div class="slideshow" onclick="closeSlideshow()"></div>
+
+  <button class="cat-button" onclick="changeBackground()">
+    <img src="kitty.png" alt="Tombol Kucing">
+  </button>
+
+  <p class="comingsoon">Coming Soon...</p>
+
+  <script>
+   const backgrounds = ['kiran2.jpg', 'kiran3.jpg', 'kiran4.jpg', 'kiran5.jpg']; // Tambahkan nama file gambar latar belakang
+  let currentBackgroundIndex = 0;
+
+  function changeBackground() {
+    currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
+    const newBackground = backgrounds[currentBackgroundIndex];
+    document.body.style.backgroundImage = `url('${newBackground}')`;
+  }
+
+  function generateRandomDecor(imageSrc, className) {
+      const decor = document.createElement('img');
+      decor.src = imageSrc;
+      decor.alt = 'Decor';
+      decor.className = `cute-decor ${className}`;
+      const randomX = Math.random() * window.innerWidth; // Random horizontal position
+      const randomY = Math.random() * (window.innerHeight - 200); // Random vertical position (leave space at bottom)
+      const randomSize = Math.random() * 30 + 10; // Random size (20 to 60 pixels)
+      decor.style.left = `${randomX}px`;
+      decor.style.top = `${randomY}px`;
+      decor.style.width = `${randomSize}px`;
+      document.body.appendChild(decor);
+    }
+    
+    // Generate random decorations
+    for (let i = 0; i < 20; i++) {
+      generateRandomDecor('heart.png', 'heart-decor');
+      generateRandomDecor('star.png', 'star-decor');
+      generateRandomDecor('cloud.png', 'cloud-decor');
+    }
+  </script>
+
+</body>
+</html>
